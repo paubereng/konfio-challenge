@@ -1,0 +1,11 @@
+{
+  "parser": "babel-eslint",
+  "plugins": ["react"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+  },
+  "extends": ["airbnb-base", "plugin:react/recommended"]
+}
