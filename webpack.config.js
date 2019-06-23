@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -21,10 +22,12 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: path.join(__dirname, 'src/index.html'),
       filename: 'index.html'
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist/'),
-    port: 3000
+    port: 3000,
+    hot: true
   }
 };
