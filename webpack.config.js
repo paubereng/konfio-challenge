@@ -2,13 +2,15 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, '/dist'),
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: '[name].[hash].js'
   },
   module: {
     rules: [
@@ -28,6 +30,22 @@ module.exports = {
       }
     ]
   },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        parallel: true,
+      })
+    ],
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
+  },
   plugins: [
     new HtmlWebPackPlugin({
       template: path.join(__dirname, 'src/index.html'),
@@ -37,6 +55,11 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css'
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'disabled',
+      generateStatsFile: true,
+      statsOptions: { source: false }
     })
   ],
   devServer: {
