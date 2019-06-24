@@ -1,4 +1,16 @@
+@import '~bulma/sass/utilities/_all.sass';
+@import '~bulma/sass/base/_all.sass';
+@import '~bulma/sass/elements/container.sass';
+@import '~bulma/sass/elements/title.sass';
+
 body {
   background-color: #34495e;
   color: white;
+}
+h1.title {
+  color: white;
+}
+.main-container {
+  min-height: 100vh;
+  padding-top: 35px;
 }
