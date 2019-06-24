@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+h1.title, h3.title {
+  color: white;
+}
+.main-container {
+  min-height: calc(100vh - 54px);
+  padding-top: 35px;
+}

@@ -1,16 +1,12 @@
-@import '~bulma/sass/utilities/_all.sass';
-@import '~bulma/sass/base/_all.sass';
-@import '~bulma/sass/elements/container.sass';
-@import '~bulma/sass/elements/title.sass';
+@charset "UTF-8";
 
-body {
-  background-color: #34495e;
-  color: white;
-}
-h1.title {
-  color: white;
-}
-.main-container {
-  min-height: 100vh;
-  padding-top: 35px;
+@import 'global.scss';
+@import 'footer.scss';
+@import 'charts.scss';
+@import 'custom-bulma.scss';
+
+.filter-wrapper {
+  border: 1px solid white;
+  padding: 10px;
+  border-radius: 4px;
 }

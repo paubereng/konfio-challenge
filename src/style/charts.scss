@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.line-chart-wrapper {
+  height: 600px;
+  width: 100%;
+}
+
+.recharts-wrapper {
+  .recharts-yAxis .recharts-cartesian-axis-tick text {
+    fill: white;
+  }
+  .recharts-xAxis .recharts-cartesian-axis-tick text {
+    fill: white;
+  }
+}
