@@ -12,4 +12,17 @@
   .recharts-xAxis .recharts-cartesian-axis-tick text {
     fill: white;
   }
+  .recharts-cartesian-axis-line {
+    stroke: white;
+  }
+  .recharts-text.recharts-label {
+    fill: white;
+  }
+  .recharts-cartesian-axis-tick {
+    font-size: 0.95rem;
+    font-family: $family-sans-serif;
+  }
+  .recharts-tooltip-label {
+    color: $grey-darker;
+  }
 }

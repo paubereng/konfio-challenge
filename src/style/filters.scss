@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+.filter-wrapper {
+  border: 1px solid white;
+  padding: 15px;
+  border-radius: 4px;
+}
+.currencies-select {
+  width: 100%;
+  .select__menu {
+    color: black;
+  }
+}
+.filter-date {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  &__item {
+    flex-direction: column;
+    max-width: 130px;
+  }
+}
+.filter-currency {
+  margin-bottom: 15px;
+}
+.filter-action {
+  display: flex;
+  justify-content: flex-end;
+  button {
+    flex: 1;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
