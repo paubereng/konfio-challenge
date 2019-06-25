@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import {
   LineChart, Line, XAxis, YAxis, Tooltip, Label, Legend, ResponsiveContainer,
 } from 'recharts';
-import _ from 'lodash';
+import omit from 'lodash/omit';
 import { COLORS } from '../constants';
 
 const customLabelLegend = name => `Date: ${name}`;
 
 const SimpleLineChart = ({ rates }) => {
-  const currencies = Object.keys(_.omit(rates[0], 'name'));
+  const currencies = Object.keys(omit(rates[0], 'name'));
   return (
     <ResponsiveContainer width="99%" height="80%">
       <LineChart width={ 600 } height={ 300 } data={ rates }
