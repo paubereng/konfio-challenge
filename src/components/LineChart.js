@@ -1,42 +1,43 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+  LineChart, Line, XAxis, YAxis, Tooltip, Label, Legend, ResponsiveContainer,
 } from 'recharts';
+import _ from 'lodash';
+import { COLORS } from '../constants';
 
-const data = [
-  {
-    name: '2013-12-24', MEX: 1.45, AUD: 2.33, CHF: 1.15, USD: 2.65,
-  },
-  {
-    name: '2013-12-25', MEX: 1.15, AUD: 2.33, CHF: 1.15, USD: 2.65,
-  },
-  {
-    name: '2013-12-26', MEX: 1.75, AUD: 2.73, CHF: 1.19, USD: 1.65,
-  },
-  {
-    name: '2013-12-27', MEX: 1.65, AUD: 2.53, CHF: 1.35, USD: 2.25,
-  },
-];
-const currencies = [
-  'MEX', 'AUD', 'CHF', 'USD',
-];
+const customLabelLegend = name => `Date: ${name}`;
 
-const SimpleLineChart = () => (
-  <ResponsiveContainer width="99%" height="80%">
-    <LineChart width={ 600 } height={ 300 } data={ data }
-    margin={
-      {
-        top: 5, right: 5, bottom: 5, left: 5,
-      }
-    }>
-       <XAxis dataKey="name"/>
-       <YAxis/>
-       <CartesianGrid />
-       <Tooltip/>
-       <Legend />
-       { currencies.map((currency, index) => <Line key={ index } type="monotone" dataKey={ currency } />)}
-    </LineChart>
-  </ResponsiveContainer>
-);
+const SimpleLineChart = ({ rates }) => {
+  const currencies = Object.keys(_.omit(rates[0], 'name'));
+  return (
+    <ResponsiveContainer width="99%" height="80%">
+      <LineChart width={ 600 } height={ 300 } data={ rates }
+      margin={
+        {
+          top: 5, right: 25, bottom: 45, left: 5,
+        }
+      }>
+        <XAxis dataKey="name">
+          <Label value="Dates" offset={-20} position="insideBottom" />
+        </XAxis>
+        <YAxis>
+          <Label value='Rates' angle={-90} position='insideLeft' />
+        </YAxis>
+        <Tooltip labelFormatter={customLabelLegend} />
+        <Legend
+          wrapperStyle={{
+            paddingTop: 40, paddingLeft: 50,
+          }}
+        />
+        { currencies.map((currency, index) => <Line key={ index } type="monotone" stroke={COLORS[index]} dataKey={ currency } />) }
+      </LineChart>
+    </ResponsiveContainer>
+  );
+};
+
+SimpleLineChart.propTypes = {
+  rates: PropTypes.array,
+};
 
 export default SimpleLineChart;
