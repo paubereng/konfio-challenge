@@ -2,43 +2,23 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
 import Select from 'react-select';
+import moment from 'moment';
 
 class Filter extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      startDate: undefined,
-      endDate: undefined,
-      currenciesSelected: [],
-    };
     this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
     this.handleChangeEndDate = this.handleChangeEndDate.bind(this);
     this.handleClickButton = this.handleClickButton.bind(this);
     this.handleChangeSelect = this.handleChangeSelect.bind(this);
   }
 
-  renderTags(currencies) { // eslint-disable-line class-methods-use-this
-    const tags = currencies.map((currency, index) => (
-      <div className="control" key={ index }>
-        <div className="tags has-addons">
-          <a className="tag is-link">{ currency }</a>
-          <a className="tag is-delete"></a>
-        </div>
-      </div>
-    ));
-    return tags;
-  }
-
   handleChangeStartDate(date) {
-    this.setState({
-      startDate: date,
-    });
+    this.props.onChangeFilter('startDate', date);
   }
 
   handleChangeEndDate(date) {
-    this.setState({
-      endDate: date,
-    });
+    this.props.onChangeFilter('endDate', date);
   }
 
   handleClickButton(ev) {
@@ -47,52 +27,75 @@ class Filter extends Component {
   }
 
   handleChangeSelect(selectedOption) {
-    this.setState({ currenciesSelected: selectedOption });
+    this.props.onChangeFilter('currenciesSelected', selectedOption);
   }
 
-  prepareCurrencyToReactSelect = (currencies) => {
-    const newRates = [];
-    Object.keys(currencies).map((currency) => {
-      newRates.push({
-        label: [currency],
-        value: currencies[currency],
+  prepareCurrencyToReactSelect = (symbols) => {
+    const newSymbols = [];
+    Object.keys(symbols).map((symbol) => {
+      newSymbols.push({
+        label: [symbol],
+        value: symbols[symbol],
       });
-      return newRates;
+      return newSymbols;
     });
-    return newRates;
+    return newSymbols;
   }
 
   render() {
-    const { startDate, endDate, currenciesSelected } = this.state;
-    const { currencies } = this.props;
-    const currenciesArr = this.prepareCurrencyToReactSelect(currencies);
-
+    const { symbols, options } = this.props;
+    const { startDate, endDate, currenciesSelected } = options;
+    const symbolsArr = this.prepareCurrencyToReactSelect(symbols);
+    const btnDisabled = (!startDate || startDate === null || startDate === '' || !moment(new Date(startDate)).isValid())
+      || (!endDate || endDate === null || endDate === '' || !moment(new Date(endDate)).isValid());
     return (
       <div className="filter-wrapper">
         <h3 className="title has-text-centered">Filters</h3>
         <div className="filter-date">
-          <div>Dates:</div>
-          <DatePicker className="input" dateFormat="MM/yyyy" showMonthYearPicker selected={ startDate } onSelect={ this.handleChangeStartDate } />
-          <DatePicker className="input" dateFormat="MM/yyyy" showMonthYearPicker selected={ endDate } onSelect={ this.handleChangeEndDate } />
+          <div className="filter-date__item">
+            <div>Min date:</div>
+            <DatePicker className="input"
+            dateFormat="MM/yyyy"
+            showMonthYearPicker selected={ startDate }
+            onSelect={ this.handleChangeStartDate }
+            placeholderText="Select a date"
+            />
+          </div>
+          <div className="filter-date__item">
+            <div>Max date:</div>
+            <DatePicker className="input" dateFormat="MM/yyyy"
+            showMonthYearPicker selected={ endDate }
+            onSelect={ this.handleChangeEndDate }
+            placeholderText="Select a date"
+            />
+          </div>
         </div>
-        <div className="filter-currency field is-grouped is-grouped-multiline">
+        <div className="filter-currency">
           <Select
             isMulti
             className="currencies-select"
             classNamePrefix="select"
             value={currenciesSelected}
             onChange={this.handleChangeSelect}
-            options={currenciesArr}
+            options={symbolsArr}
           />
         </div>
-        <button className="button is-primary" onClick={ this.handleClickButton }>Filter</button>
+        <div className="filter-action">
+          <button disabled={ btnDisabled } className="button is-primary" onClick={ this.handleClickButton }>Filter</button>
+        </div>
       </div>
     );
   }
 }
 
 Filter.propTypes = {
-  currencies: PropTypes.object,
+  symbols: PropTypes.object,
+  options: PropTypes.shape({
+    startDate: PropTypes.date,
+    endDate: PropTypes.date,
+    currenciesSelected: PropTypes.array,
+  }),
+  onChangeFilter: PropTypes.func,
   handleClick: PropTypes.func,
 };
 
