@@ -6,13 +6,20 @@ import {
 import omit from 'lodash/omit';
 import { COLORS } from '../constants';
 
+const INITIAL_DATA = [
+  {
+    name: 'EUR', EUR: 0, USD: 0, GBP: 0,
+  },
+];
+
 const customLabelLegend = name => `Date: ${name}`;
 
 const SimpleLineChart = ({ rates }) => {
-  const currencies = Object.keys(omit(rates[0], 'name'));
+  const data = rates && rates.length > 0 ? rates : INITIAL_DATA;
+  const currencies = Object.keys(omit(data[0], 'name'));
   return (
     <ResponsiveContainer width="99%" height="80%">
-      <LineChart width={ 600 } height={ 300 } data={ rates }
+      <LineChart width={ 600 } height={ 300 } data={ data }
       margin={
         {
           top: 5, right: 25, bottom: 45, left: 5,
