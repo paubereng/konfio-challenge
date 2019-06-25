@@ -24,12 +24,15 @@ export function fetchRates(datesArray, currencies) {
     .then(axios.spread((...res) => {
       const newRates = [];
       res.map((r) => {
-        let object = {};
-        object = {
-          name: r.data.date,
-          ...r.data.rates,
-        };
-        return newRates.push(object);
+        if (r.data.success === true) {
+          let object = {};
+          object = {
+            name: r.data.date,
+            ...r.data.rates,
+          };
+          return newRates.push(object);
+        }
+        return false;
       });
       return newRates;
     }));
