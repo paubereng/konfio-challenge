@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://data.fixer.io/api/';
+export const BASE_URL = 'https://data.fixer.io/api/';
 
 export const API_KEY = '5b61b73b560cc3b4357f4e999cf160c5';
 
