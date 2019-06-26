@@ -37,7 +37,7 @@ const SimpleLineChart = ({ rates }) => {
             paddingTop: 40, paddingLeft: 50,
           }}
         />
-        { currencies.map((currency, index) => <Line key={ index } type="monotone" stroke={COLORS[index]} dataKey={ currency } />) }
+        { currencies.map((currency, index) => <Line key={ index } strokeWidth={2} type="monotone" stroke={COLORS[index]} dataKey={ currency } />) }
       </LineChart>
     </ResponsiveContainer>
   );
