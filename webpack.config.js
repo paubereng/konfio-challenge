@@ -35,16 +35,7 @@ module.exports = {
       new UglifyJsPlugin({
         parallel: true,
       })
-    ],
-    splitChunks: {
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all'
-        }
-      }
-    }
+    ]
   },
   plugins: [
     new HtmlWebPackPlugin({
