@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import {
   LineChart, Line, XAxis, YAxis, Tooltip, Label, Legend, ResponsiveContainer,
 } from 'recharts';
+import moment from 'moment';
 import omit from 'lodash/omit';
 import { COLORS } from '../constants';
 
 const INITIAL_DATA = [
   {
-    name: 'EUR', EUR: 0, USD: 0, GBP: 0,
+    name: moment().format('YYYY-MM-DD'), EUR: 0, USD: 0, GBP: 0,
   },
 ];
 
