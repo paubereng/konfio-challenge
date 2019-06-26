@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+$primaryColorRecharts: #fff;
 .line-chart-wrapper {
   //height: 500px;
   width: 100%;
@@ -7,16 +7,16 @@
 
 .recharts-wrapper {
   .recharts-yAxis .recharts-cartesian-axis-tick text {
-    fill: white;
+    fill: $primaryColorRecharts;
   }
   .recharts-xAxis .recharts-cartesian-axis-tick text {
-    fill: white;
+    fill: $primaryColorRecharts;
   }
   .recharts-cartesian-axis-line {
-    stroke: white;
+    stroke: $primaryColorRecharts;
   }
   .recharts-text.recharts-label {
-    fill: white;
+    fill: $primaryColorRecharts;
   }
   .recharts-cartesian-axis-tick {
     font-size: 0.95rem;
@@ -28,5 +28,8 @@
   .recharts-responsive-container {
     min-width: 300px;
     max-height: 400px;
+  }
+  .recharts-cartesian-axis-tick-line {
+    stroke: $primaryColorRecharts;
   }
 }

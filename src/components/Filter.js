@@ -50,7 +50,7 @@ class Filter extends Component {
       || (!endDate || endDate === null || endDate === '' || !moment(new Date(endDate)).isValid());
     return (
       <div className="filter-wrapper">
-        <h3 className="title has-text-centered">Filters</h3>
+        <h3 className="title is-4 has-text-centered">Filters</h3>
         <div className="filter-date">
           <div className="filter-date__item">
             <div>Min date:</div>
