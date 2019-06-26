@@ -13,8 +13,8 @@ class RatesContainer extends Component {
       rates: [],
       symbols: {},
       filters: {
-        startDate: undefined,
-        endDate: undefined,
+        startDate: moment().subtract(4, 'months').valueOf(),
+        endDate: Date.now(),
         currenciesSelected: [...INITIAL_CURRENCIES_SELECT],
       },
     };
@@ -27,10 +27,10 @@ class RatesContainer extends Component {
   }
 
   initRates = () => {
-    const { currenciesSelected } = this.state.filters;
-    const endDate = moment(new Date());
-    const firstDate = moment(moment(endDate).subtract(4, 'months'));
-    const enumMonthsBetweenDates = monthsBetweenDates(firstDate, endDate);
+    const { currenciesSelected, startDate, endDate } = this.state.filters;
+    const formatEndDate = moment(endDate);
+    const formatStartDate = moment(startDate);
+    const enumMonthsBetweenDates = monthsBetweenDates(formatStartDate, formatEndDate);
     const formatCurrencies = this.currenciesToString(currenciesSelected);
     this.getRates(enumMonthsBetweenDates, formatCurrencies);
   }
