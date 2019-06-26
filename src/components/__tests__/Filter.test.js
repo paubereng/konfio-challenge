@@ -15,7 +15,8 @@ describe('Filter component', () => {
     },
     onChangeFilter: changeFilter,
     handleClick: handleClick,
-  }
+  };
+
   beforeEach(()=>{
     component = shallow(<Filter { ...mockProps } />);
   });
@@ -30,12 +31,5 @@ describe('Filter component', () => {
     });
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
-
-  // it('on change date', () => {
-  //   component.find('filter-date__item .input').at(0).simulate('click', {
-  //     target: { value: '23/11/2001'}
-  //   });
-  //   expect(handleClick).toHaveBeenCalledTimes(1);
-  // });
 
 });
