@@ -18,7 +18,7 @@ const SimpleLineChart = ({ rates }) => {
   const data = rates && rates.length > 0 ? rates : INITIAL_DATA;
   const currencies = Object.keys(omit(data[0], 'name'));
   return (
-    <ResponsiveContainer width="99%" height="80%">
+    <ResponsiveContainer width="99%" height={500}>
       <LineChart width={ 600 } height={ 300 } data={ data }
       margin={
         {
