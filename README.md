@@ -54,7 +54,7 @@ Why I used Webpack 4?
 - Analyzes bundle.
 
 ## Cache
-I used [memory-cache](https://www.npmjs.com/package/memory-cache) to add request content to cache. I implemented it creating a cache middleware and adding it for each route I want to cache.
+I used [memory-cache](https://www.npmjs.com/package/memory-cache) to add request content to cache. I implemented it creating a cache middleware and adding it for each route I want to cache.<br>
 Pros:
 - Easy and fast(request time reduced more than 80%) option to work.
 
