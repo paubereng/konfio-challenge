@@ -1,21 +1,16 @@
 import axios from 'axios';
-import { BASE_URL, API_KEY, BASE_CURRENCY } from '../constants';
+import { BASE_CURRENCY } from '../constants';
 
 export function fetchSymbols() {
-  return axios.get(`${BASE_URL}symbols`, {
-    params: {
-      access_key: API_KEY,
-    },
-  })
+  return axios.get('/api/symbols')
     .then(response => response.data.symbols)
     .catch(error => error);
 }
 
 export function fetchRates(datesArray, currencies) {
-  const linksArr = datesArray.map(date => `${BASE_URL}${date}`);
+  const linksArr = datesArray.map(date => `/api/rates?date=${date}`);
   const params = {
     params: {
-      access_key: API_KEY,
       base: BASE_CURRENCY,
       symbols: currencies,
     },
