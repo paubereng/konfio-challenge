@@ -42,12 +42,19 @@ class Filter extends Component {
     return newSymbols;
   }
 
+  filterMinDate = date => moment() > date && this.props.options.endDate > date;
+
+  filterMaxDate = date => moment() > date && this.props.options.startDate < date;
+
+  validateDate = date => !date || date === null || date === '' || !moment(new Date(date)).isValid();
+
   render() {
     const { symbols, options } = this.props;
     const { startDate, endDate, currenciesSelected } = options;
     const symbolsArr = this.prepareCurrencyToReactSelect(symbols);
-    const btnDisabled = (!startDate || startDate === null || startDate === '' || !moment(new Date(startDate)).isValid())
-      || (!endDate || endDate === null || endDate === '' || !moment(new Date(endDate)).isValid());
+    const btnDisabled = this.validateDate(startDate) || this.validateDate(endDate)
+      || (!currenciesSelected || !currenciesSelected.length > 0);
+
     return (
       <div className="filter-wrapper">
         <h3 className="title is-4 has-text-centered">Filters</h3>
@@ -58,6 +65,7 @@ class Filter extends Component {
             dateFormat="MM/yyyy"
             showMonthYearPicker selected={ startDate }
             onSelect={ this.handleChangeStartDate }
+            filterDate={ this.filterMinDate }
             placeholderText="Select a date"
             />
           </div>
@@ -66,6 +74,7 @@ class Filter extends Component {
             <DatePicker className="input" dateFormat="MM/yyyy"
             showMonthYearPicker selected={ endDate }
             onSelect={ this.handleChangeEndDate }
+            filterDate={ this.filterMaxDate }
             placeholderText="Select a date"
             />
           </div>
