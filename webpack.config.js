@@ -6,7 +6,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/client/index.js',
   output: {
     path: path.join(__dirname, '/dist'),
     publicPath: '/',
@@ -39,7 +39,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: path.join(__dirname, 'src/index.html'),
+      template: path.join(__dirname, 'src/client/index.html'),
       filename: 'index.html'
     }),
     new webpack.HotModuleReplacementPlugin(),
