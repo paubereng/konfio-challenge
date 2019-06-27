@@ -7,7 +7,7 @@ var BASE_URL = 'https://data.fixer.io/api/';
 var API_KEY = '5b61b73b560cc3b4357f4e999cf160c5';
 
 
-router.get('/api/symbols', cache(30), async (req, res, next) => {
+router.get('/api/symbols', cache(300), async (req, res, next) => {
   try {
     const symbols = await axios.get(BASE_URL + 'symbols?access_key=' + API_KEY);
     res.send(symbols.data);
@@ -17,7 +17,7 @@ router.get('/api/symbols', cache(30), async (req, res, next) => {
   }
 });
 
-router.get('/api/rates', cache(30), async (req, res, next) => {
+router.get('/api/rates', cache(300), async (req, res, next) => {
   var params = {
     params: {
       access_key: API_KEY,
