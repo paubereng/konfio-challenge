@@ -14,7 +14,7 @@
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "start": "node src/server/index.js",
-    "heroku-postbuild": "webpack -p"
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [],
   "author": "",
