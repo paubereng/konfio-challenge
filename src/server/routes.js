@@ -3,8 +3,8 @@ var router = express.Router();
 var axios = require('axios');
 var cache = require('./cacheMiddleware');
 
-var BASE_URL = 'https://data.fixer.io/api/';
-var API_KEY = '5b61b73b560cc3b4357f4e999cf160c5';
+var BASE_URL = 'http://data.fixer.io/api/';
+var API_KEY = 'f4d447a6d7c258597441341a055cbf2a';
 
 
 router.get('/api/symbols', cache(300), async (req, res, next) => {
