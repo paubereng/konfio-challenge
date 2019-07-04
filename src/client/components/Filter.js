@@ -51,7 +51,7 @@ class Filter extends Component {
   render() {
     const { symbols, options } = this.props;
     const { startDate, endDate, currenciesSelected } = options;
-    const symbolsArr = this.prepareCurrencyToReactSelect(symbols);
+    const symbolsArr = symbols && this.prepareCurrencyToReactSelect(symbols);
     const btnDisabled = this.validateDate(startDate) || this.validateDate(endDate)
       || (!currenciesSelected || !currenciesSelected.length > 0);
 
