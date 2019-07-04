@@ -80,7 +80,7 @@ class RatesContainer extends Component {
     return (
       <section className="rates-section">
         <h1 className="title has-text-centered is-spaced">konfio-App</h1>
-        <h2 className="subtitle has-text-centered">FX rates of the Mexican peso against other currencies</h2>
+        <h2 className="subtitle has-text-centered">FX rates of the EURo against other currencies</h2>
         <div className="columns reverse-column-order">
           <div className="column is-8 is-vcentered">
             <div className="line-chart-wrapper">

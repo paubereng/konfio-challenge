@@ -2,10 +2,10 @@ export const BASE_URL = 'https://data.fixer.io/api/';
 
 export const API_KEY = '5b61b73b560cc3b4357f4e999cf160c5';
 
-export const BASE_CURRENCY = 'MXN';
+export const BASE_CURRENCY = 'EUR';
 
 export const CURRENCIES = [
-  'USD', 'EUR', 'GBP',
+  'USD', 'MXN', 'GBP',
 ];
 
 export const INITIAL_CURRENCIES_SELECT = [
@@ -13,7 +13,7 @@ export const INITIAL_CURRENCIES_SELECT = [
     label: 'USD', value: 'United States Dollar',
   },
   {
-    label: 'EUR', value: 'Euro',
+    label: 'MXN', value: 'Mexican Peso',
   },
   {
     label: 'GBP', value: 'British Pound Sterling',
